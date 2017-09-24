@@ -1,0 +1,252 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath,bm}
+
+\begin{document}
+\begin{center}
+    \Huge CSCI 567  Machine Learning \\[10pt]
+    \Large Homework \#1 \\[10pt]
+    \Large Name : Yi Zhao \\[35pt]
+\end{center}
+
+
+%----------------------------------------------------------------------------------------
+%      Question 1.1
+%----------------------------------------------------------------------------------------
+
+\noindent{
+\textbf{
+    \Large Question 1.1 Answer : \\[5pt]
+}
+}
+\indent{
+The Rank of the design matrix
+\begin{math}
+\mathnormal{X}
+\end{math}
+is equal to or larger than 
+\begin{math}
+\mathnormal{D} + 1
+\end{math}
+, where the 
+\begin{math}
+\mathnormal{D}
+\end{math}
+ is the dimensionality of
+$\bm{w}$.\\[30pt]
+}
+
+%----------------------------------------------------------------------------------------
+%      Question 1.2
+%----------------------------------------------------------------------------------------
+\noindent{
+\textbf{
+    \Large Question 1.2 Answer : \\
+}
+\begin{center}
+	\begin{displaymath}
+		\mathnormal{RSS}
+		\left(
+		\tilde{\bm{w}}
+		\right)=
+		\sum_{n}
+		\bigg[
+		y_{n}
+	        -
+	        \left(
+	        b
+	        +
+	        \sum_{d}
+	        w_{d}
+	        x_{nd}
+	        \right)
+		\bigg]^2
+	\end{displaymath}
+	\begin{displaymath}
+		if
+		\quad
+		\frac{
+		\partial
+		\mathnormal{RSS}
+		\left(
+		\tilde{\bm{w}}
+		\right)}
+		{\partial
+		b}=0 ,
+	\end{displaymath}
+	\begin{displaymath}
+		then,
+		\quad
+		\sum_{n}
+		\bigg[
+		y_{n}
+	        -
+	        \left(
+	        b
+	        +
+	        \sum_{d}
+	        w_{d}
+	        x_{nd}
+	        \right)
+		\bigg] = 0
+	\end{displaymath}
+	\begin{displaymath}
+		\sum_{n}
+		b
+		=
+		\sum_{n}
+		y_{n}
+		-
+		\sum_{n}
+		\sum_{d}
+		w_{d}
+	        x_{nd}
+	\end{displaymath}
+	\begin{displaymath}
+		b
+		=
+		\frac{1}{N}
+		\sum_{n}
+		y_{n}
+		-
+		\sum_{d}
+		\left(
+		w_{d}
+		\frac{1}{N}
+		\sum_{n}
+		x_{nd}
+		\right)
+	\end{displaymath}
+	\begin{displaymath}
+		under\ the\ condition:
+		\quad
+		\frac{1}{N}
+		\sum_{n}
+		x_{nd}
+		=0
+		\quad
+		\quad
+		\forall
+		d = 1, 2, ..., D.
+	\end{displaymath}
+	\begin{displaymath}
+		we\ can\ get:
+		\sum_{d}
+		\left(
+		w_{d}
+		\frac{1}{N}
+		\sum_{n}
+		x_{nd}
+		\right) = 0
+	\end{displaymath}
+	\begin{displaymath}
+		then,
+		\quad
+		b
+		=
+		\frac{1}{N}
+		\sum_{n}
+		y_{n}
+	\end{displaymath}\\[50pt]
+\end{center}
+}
+
+%----------------------------------------------------------------------------------------
+%      Question 2.1
+%----------------------------------------------------------------------------------------
+\noindent{
+\textbf{
+    \Large Question 2.1 Answer : \\
+}
+\begin{center}
+\begin{large}
+	\begin{displaymath}
+	\min_{b}
+	\varepsilon
+	\left(
+	b
+	\right)
+	=
+	\min_{b}
+	-
+	\sum_{n}
+	\left\{
+	y_{n}
+	\log
+	\sigma
+	\left(
+	b
+	\right)
+	+
+	\left(
+	1-y_{n}
+	\right)
+	\log
+	\left[
+	1
+	-
+	\sigma
+	\left(
+	b
+	\right)
+	\right]
+	\right\}
+	\end{displaymath}
+	\begin{displaymath}
+	\frac{\partial
+	\varepsilon
+	\left(
+	b
+	\right)}
+	{\partial
+	b
+	}
+	=
+	-
+	\sum_{n}
+	\left\{
+	y_{n}
+	\left[
+	1-
+	\sigma
+	\left(
+	b
+	\right)
+	\right]
+	-
+	\left(
+	1-y_{n}
+	\right)
+	\sigma
+	\left(
+	b
+	\right)
+	\right\}=0
+	\end{displaymath}
+	\begin{displaymath}
+	so,
+	\quad
+	\sum_{n}
+	\sigma
+	\left(
+	b
+	\right)
+	=
+	\sum_{n}
+	y_{n}
+	\end{displaymath}
+	\begin{displaymath}
+	b^*=
+	\log
+	\frac{
+	\sum
+	y_{n}}
+	{N-
+	\sum
+	y_{n}
+	}
+	\end{displaymath}	
+\end{large}
+\end{center}
+}
+\end{document}
+
