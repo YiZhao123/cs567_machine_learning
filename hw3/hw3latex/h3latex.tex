@@ -1,0 +1,442 @@
+\documentclass[a4paper,12pt,tikz]{article}
+\usepackage{amsmath,bm,tikz}
+
+\begin{document}
+\begin{center}
+    \Huge CSCI 567  Machine Learning \\[10pt]
+    \Large Homework \#3 \\[10pt]
+    \Large Name : Yi Zhao \\[35pt]
+\end{center}
+
+
+%----------------------------------------------------------------------------------------
+%      Question 1.1
+%----------------------------------------------------------------------------------------
+
+\noindent{
+\textbf{
+    \Large Question 1.1 Answer : \\[2pt]
+}
+}
+
+\indent{
+	Define a matrix
+	\begin{math}
+	\bm{\mathnormal{K}} \in \mathnormal{R}^{N\times N}
+	\end{math} 
+	which each element \begin{math} \bm{\mathnormal{K}}_{ij} \end{math} is \begin{math} \mathnormal{k} (\bm{x}_{i}, \bm{x}_{j})\end{math},
+	 according to the assume, we know \begin{math}\bm{\mathnormal{K}}\end{math} is the Identity Maxtrix. According to the Mercer?s theorem, we only need to prove that the Identity Maxtrix  \begin{math}\bm{\mathnormal{K}}\end{math} is positive semidefinite:
+	 
+	 \begin{center}
+	 For any vector \begin{math}\bm{\mathnormal{a}} \in \mathnormal{R}^{N} \end{math}, we can get,
+	 \begin{displaymath}
+	 \bm{\mathnormal{a}}^\mathrm{T}\bm{\mathnormal{K}}\bm{\mathnormal{a}} =  \bm{\mathnormal{a}}^\mathrm{T}\bm{\mathnormal{a}} \geq 0
+	 \end{displaymath}
+	 So Identity Maxtrix  \begin{math}\bm{\mathnormal{K}}\end{math} is positive semidefinite, and \begin{math} \mathnormal{k} (\bm{x}, \bm{x^{'}})\end{math} is a valid kernel.\\[25pt]
+	 \end{center} 
+}
+
+%----------------------------------------------------------------------------------------
+%      Question 1.2
+%----------------------------------------------------------------------------------------
+\noindent{
+\textbf{
+    \Large Question 1.2 Answer : \\[-5pt]
+}
+\begin{center}
+	\begin{displaymath}
+	when\  \lambda = 0, \bm{\mathnormal{K}} = \bm{\mathnormal{I}}, then\ \mathnormal{J} (\bm\alpha) = \frac{1}{2} \bm\alpha^\mathrm{T}\bm\alpha - \bm{\mathnormal{y}}^\mathrm{T}\bm\alpha + \frac{1}{2} \bm{\mathnormal{y}}^\mathrm{T}\bm{\mathnormal{y}}
+	\end{displaymath}
+	\begin{displaymath}
+	\frac{\partial{\mathnormal{J} (\bm\alpha)}}{\partial{\bm\alpha}} = \bm\alpha - \bm{\mathnormal{y}} = 0
+	\end{displaymath}
+	\begin{displaymath}
+	\bm\alpha^{*} = \bm{\mathnormal{y}}
+	\end{displaymath}
+	\begin{displaymath}
+	so, \ \mathnormal{J} (\bm\alpha^{*}) = 0 
+	\end{displaymath}\\[25pt]
+\end{center}
+}
+
+%----------------------------------------------------------------------------------------
+%      Question 1.3
+%----------------------------------------------------------------------------------------
+\noindent{
+\textbf{
+    \Large Question 1.3 Answer : 
+}
+\begin{center}
+	\begin{displaymath}
+	\mathnormal{k} (\bm{x}, \bm{x}_{n}) = 0 \ with\  \bm{x} \not = \bm{x}_{n},\ \forall n = 1,2,\cdots,N
+	\end{displaymath}
+	\begin{displaymath}
+	\mathnormal{f} (\bm{x}) = [0,0, \cdots, 0]\bm\alpha^{*}
+	\end{displaymath}
+	\begin{displaymath}
+	\mathnormal{f}(\bm{x}) = \bm{0}\bm\alpha^{*} = 0
+	\end{displaymath}\\[25pt]
+\end{center}
+}
+
+%----------------------------------------------------------------------------------------
+%      Question 2.1
+%----------------------------------------------------------------------------------------
+\noindent{
+\textbf{
+    \Large Question 2.1 Answer : \\[2pt]
+}
+
+No. Because in one-dimensional feature space, assuming the linear separator is \begin{math} ax+b \end{math} for \begin{math} x_{1}\ x_{2}\ x_{3}\end{math}, so we can get \begin{math} -1\times(-a+b) \geq 0\end{math},  \begin{math}-1\times(a+b) \geq 0\end{math}, \begin{math}1\times b \geq 0 \end{math}, then a = 0 and b = 0. \\[25pt]
+}
+
+%----------------------------------------------------------------------------------------
+%      Question 2.2
+%----------------------------------------------------------------------------------------
+\noindent{
+\textbf{
+    \Large Question 2.2 Answer : \\[2pt]
+}
+ \begin{tikzpicture}
+        \draw[->] (-5.5,0) -- (5.5,0) node[right] {$d_{1}$};
+  	\draw[->] (0,-1) -- (0,5.5) node[above] {$d_{2}$};
+	\fill[black](0,2.5)circle(0.05) node[left, black] {$0.5$};
+	\fill[black](0,5)circle(0.05) node[left, black] {$1$};
+	\fill[black](2.5,0)circle(0.05) node[below, black] {$0.5$};
+	\fill[black](5,0)circle(0.05) node[below, black] {$1$};
+	\fill[black](-2.5,0)circle(0.05) node[below, black] {$-0.5$};
+	\fill[black](-5,0)circle(0.05) node[below, black] {$-1$};
+	\fill[red](0,0)circle(0.1) node[above right, black] {$label = +1$};
+	\fill[blue](5,5)circle(0.1) node[below right, black] {$label = -1$};
+	\fill[blue](-5,5)circle(0.1) node[below right, black] {$label = -1$};
+\end{tikzpicture}
+ 
+ Yes, we can assume this linear decision boundary is  \begin{math} y[a_{1}d_{1}+a_{2}d_{2}+a_{3}] \geq 0 \end{math}, substitute with three point and we can easily get one linear decision boundary  \begin{math} d_{2} = 0.5 \end{math}.\\[25pt]
+}
+
+%----------------------------------------------------------------------------------------
+%      Question 2.3
+%----------------------------------------------------------------------------------------
+\noindent{
+\textbf{
+    \Large Question 2.3 Answer : \\[2pt]
+}
+\begin{center}
+\begin{displaymath}
+	\mathnormal{k} (x, x^{'}) = \phi(x)^\mathrm{T}\phi(x^{'}) = xx^{'} + (xx^{'})^{2} 
+\end{displaymath}
+\begin{displaymath}
+	\bm{\mathnormal{K}} = \begin{pmatrix} 2 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 0 \end{pmatrix}
+\end{displaymath}
+Given an non-zero column vector \begin{math} \bm{\mathnormal{z}} = [\mathnormal{z_{1}}, \mathnormal{z_{2}}, \mathnormal{z_{3}}]^\mathrm{T}, \  \forall \mathnormal{z_{1}}, \mathnormal{z_{2}}, \mathnormal{z_{3}} \in  \mathnormal{R}\end{math}
+\begin{displaymath}
+	\bm{\mathnormal{z}}^\mathrm{T}\bm{\mathnormal{K}}\bm{\mathnormal{z}} =  [2\mathnormal{z_{1}}, 2\mathnormal{z_{2}}, 0]^\mathrm{T}[\mathnormal{z_{1}}, \mathnormal{z_{2}}, \mathnormal{z_{3}}]
+\end{displaymath}
+\begin{displaymath}
+	\bm{\mathnormal{z}}^\mathrm{T}\bm{\mathnormal{K}}\bm{\mathnormal{z}} = 2\mathnormal{z_{1}}^{2} + 2\mathnormal{z_{2}}^{2} \geq 0, \forall \mathnormal{z_{1}}, \mathnormal{z_{2}} \in  \mathnormal{R}
+\end{displaymath}
+So, K is a positive semi-definite (PSD) matrix.\\[25pt]
+\end{center}
+}
+
+%----------------------------------------------------------------------------------------
+%      Question 2.4
+%----------------------------------------------------------------------------------------
+\noindent{
+\textbf{
+    \Large Question 2.4 Answer : \\[2pt]
+}
+\begin{center}
+Primal formulations:
+\begin{displaymath}
+	\min \limits_{\mathnormal{w_1}, \mathnormal{w_2}, \mathnormal{b}, \{ \xi_{n}\}} \quad \mathnormal{C}\sum \limits_{n}\xi_{n}+\frac{1}{2}{(\mathnormal{w_1}^{2} + \mathnormal{w_2}^{2})}
+\end{displaymath}
+\begin{displaymath}
+	\bm{\mathrm{s.t}} \quad 1+ [-w_1+w_2+b] \leq \xi_{1}
+\end{displaymath}
+\begin{displaymath}
+	 1+[w_1+w_2+b] \leq \xi_{2}
+\end{displaymath}
+\begin{displaymath}
+	 1- b \leq \xi_{3}
+\end{displaymath}
+\begin{displaymath}
+	\xi_{n} \geq 0  , \quad n = 1,2,3
+\end{displaymath}
+Dual formulations:
+\begin{displaymath}
+	\max \limits_{\bm{\alpha}}\quad \sum \limits_{n} \alpha_{n}-\frac{1}{2}\sum \limits_{m,n}y_{m}y_{n}\alpha_{m}\alpha_{n}\mathnormal{k} (x_m, x_n)
+\end{displaymath}
+\begin{displaymath}
+	So,\quad \max \limits_{\bm{\alpha}}\quad (\alpha_1+\alpha_2+\alpha_3)-\frac{1}{2}(2y_1^2\alpha_1^2 + 2y_2^2\alpha_2^2)
+\end{displaymath}
+\begin{displaymath}
+	So,\quad \max \limits_{\bm{\alpha}}\quad (\alpha_1+\alpha_2+\alpha_3)-(\alpha_1^2 + \alpha_2^2)
+\end{displaymath}
+\begin{displaymath}
+	\bm{\mathrm{s.t}} \quad 0\leq\alpha_{n}\leq\mathnormal{C}, \quad n = 1, 2, 3
+\end{displaymath}
+\begin{displaymath}
+	\alpha_1+\alpha_2-\alpha_3 = 0
+\end{displaymath}
+\end{center}
+}
+
+%----------------------------------------------------------------------------------------
+%      Question 2.5
+%----------------------------------------------------------------------------------------
+\noindent{
+\textbf{
+    \Large Question 2.5 Answer : \\[2pt]
+}
+\begin{displaymath}
+	\min \limits_{\bm{\alpha}}\quad \frac{1}{2}\sum \limits_{m,n}y_{m}y_{n}\alpha_{m}\alpha_{n}\mathnormal{k} (x_m, x_n) - \sum \limits_{n} \alpha_{n}
+\end{displaymath}
+\begin{displaymath}
+\min \limits_{\bm{\alpha}} \quad \alpha_1^2 + \alpha_2^2-(\alpha_1+\alpha_2+\alpha_3)
+\end{displaymath}
+\begin{displaymath}
+\bm{\mathrm{s.t}} \quad 0\leq\alpha_{n}\leq\mathnormal{C}, \quad n = 1, 2, 3
+\end{displaymath}
+\begin{displaymath}
+	\alpha_1+\alpha_2-\alpha_3 = 0
+\end{displaymath}
+\begin{displaymath}
+\mathrm{due\ to\ symmetry}, \ \alpha_1 = \alpha_2 = \frac{1}{2}\alpha_3
+\end{displaymath}
+\begin{displaymath}
+\mathrm{in\ order\ to\ minimize\ objective\ function }, \ \alpha_1 =1,  \alpha_2 = 1, \alpha_3 = 2
+\end{displaymath}
+\begin{displaymath}
+\bm{\alpha} = \begin{pmatrix} 1 & 1 & 2 \end{pmatrix}
+\end{displaymath}
+\begin{displaymath}
+\bm{\mathnormal{w}} = \sum \limits_{n}\alpha_{n}y_{n}\phi(x_{n}) = \begin{pmatrix} 0 & -2 \end{pmatrix}^\mathrm{T}
+\end{displaymath}
+\begin{displaymath}
+b = [y_n - \bm{w}^\mathrm{T}\phi(x_n)] = 1
+\end{displaymath}
+}
+
+
+%----------------------------------------------------------------------------------------
+%      Question 2.6
+%----------------------------------------------------------------------------------------
+\noindent{
+\textbf{
+    \Large Question 2.6 Answer : \\[2pt]
+}
+\begin{tikzpicture}
+        \draw[->] (-5.5,0) -- (5.5,0) node[right] {$x_{d1}$};
+  	\draw[->] (0,-1) -- (0,5.5) node[above] {$x_{d2}$};
+	\draw [thick,dash dot] (-5.5,2.5) -- (5.5,2.5) node[above] {$decision\ boundary: -2x_{d2} +1 = 0$};
+	\fill[black](0,2.5)circle(0.05) node[left, black] {$0.5$};
+	\fill[black](0,5)circle(0.05) node[left, black] {$1$};
+	\fill[black](2.5,0)circle(0.05) node[below, black] {$0.5$};
+	\fill[black](5,0)circle(0.05) node[below, black] {$1$};
+	\fill[black](-2.5,0)circle(0.05) node[below, black] {$-0.5$};
+	\fill[black](-5,0)circle(0.05) node[below, black] {$-1$};
+	\fill[red](0,0)circle(0.1) node[above right, black] {$label = +1$};
+	\fill[blue](5,5)circle(0.1) node[below right, black] {$label = -1$};
+	\fill[blue](-5,5)circle(0.1) node[below right, black] {$label = -1$};
+	\draw[thick,dash dot] (0,0) circle (0.3) node[above left, black] {$support\ vector$};
+	\draw[thick,dash dot] (5,5) circle (0.3) node[above left, black] {$support\ vector$};
+	\draw[thick,dash dot] (-5,5) circle (0.3)node[above left, black] {$support\ vector$};
+\end{tikzpicture}
+\begin{center}
+\begin{tikzpicture}
+	\draw[->] (-5.5,0) -- (5.5,0) node[right] {$x$};
+	\fill[red](0,0)circle(0.1) node[above, black] {$label = +1$};
+	\fill[blue](5,0)circle(0.1) node[above right, black] {$label = -1$};
+	\fill[blue](-5,0)circle(0.1) node[above left, black] {$label = -1$};
+	\fill[black](-5,0)circle(0.01) node[below, black] {$-1$};
+	\fill[black](0,0)circle(0.01) node[below, black] {$0$};
+	\fill[black](5,0)circle(0.01) node[below, black] {$1$};
+	\draw [thick,dash dot] (3.535, -2) -- (3.535, 2) node[above] {$x = \frac{\sqrt{2}}{2}$};
+	\draw [thick,dash dot] (-3.535, -2) -- (-3.535, 2) node[above] {$x = -\frac{\sqrt{2}}{2}$};
+\end{tikzpicture}\\[30pt]
+\end{center}
+}
+
+%----------------------------------------------------------------------------------------
+%      Question 3.1
+%----------------------------------------------------------------------------------------
+\noindent{
+\textbf{
+    \Large Question 3.1 Answer : \\[2pt]
+}
+\begin{displaymath}
+f_{1(+1, -2, 1)}=\left\{
+\begin{aligned}
++1,\quad if \ x_1 > -2 \\
+-1, \quad otherwise.
+\end{aligned}
+\right.
+\end{displaymath}
+\begin{displaymath}
+\epsilon_1 = 0.50
+\end{displaymath}
+\begin{displaymath}
+\beta_1 = 0.00
+\end{displaymath}
+}
+
+%----------------------------------------------------------------------------------------
+%      Question 3.2
+%----------------------------------------------------------------------------------------
+\noindent{
+\textbf{
+    \Large Question 3.2 Answer : \\[2pt]
+}
+\begin{displaymath}
+w_2(1) = 0.25
+\end{displaymath}
+\begin{displaymath}
+w_2(2) = 0.25
+\end{displaymath}
+\begin{displaymath}
+w_2(3) = 0.25
+\end{displaymath}
+\begin{displaymath}
+w_2(4) = 0.25
+\end{displaymath}
+}
+
+%----------------------------------------------------------------------------------------
+%      Question 3.3
+%----------------------------------------------------------------------------------------
+\noindent{
+\textbf{
+    \Large Question 3.3 Answer : \\[2pt]
+}
+\begin{displaymath}
+f_{1(+1, -0.5, 1)}=\left\{
+\begin{aligned}
++1,\quad if \ x_1 > -0.5\\
+-1, \quad otherwise.
+\end{aligned}
+\right.
+\end{displaymath}
+\begin{displaymath}
+\epsilon_1 = 0.25
+\end{displaymath}
+\begin{displaymath}
+\beta_1 = \frac{1}{2}\mathrm{ln}3 = 0.55
+\end{displaymath}
+}
+
+%----------------------------------------------------------------------------------------
+%      Question 3.4
+%----------------------------------------------------------------------------------------
+\noindent{
+\textbf{
+    \Large Question 3.4 Answer : \\[2pt]
+}
+\begin{displaymath}
+w_2(1) = \frac{1}{4\sqrt{3}}
+\end{displaymath}
+\begin{displaymath}
+w_2(2) = \frac{1}{4\sqrt{3}}
+\end{displaymath}
+\begin{displaymath}
+w_2(3) =\frac{1}{4\sqrt{3}}
+\end{displaymath}
+\begin{displaymath}
+w_2(4) = \frac{\sqrt{3}}{4}
+\end{displaymath}
+\begin{displaymath}
+Normalize\ them, then\ we\ can \ get\  w_2(1) = w_2(2)=w_2(3) = \frac{1}{6} = 0.17
+\end{displaymath}
+\begin{displaymath}
+w_2(4) = 0.50
+\end{displaymath}
+\begin{displaymath}
+f_{2(-1, 0.5, 1)}=\left\{
+\begin{aligned}
+-1,\quad if \ x_1 > 0.5\\
++1, \quad otherwise.
+\end{aligned}
+\right.
+\end{displaymath}
+\begin{displaymath}
+\epsilon_2 = w_2(2) = \frac{1}{6} = 0.17
+\end{displaymath}
+\begin{displaymath}
+\beta_2 = \frac{1}{2}\mathrm{ln}5 = 0.80
+\end{displaymath}
+}
+
+%----------------------------------------------------------------------------------------
+%      Question 3.5
+%----------------------------------------------------------------------------------------
+\noindent{
+\textbf{
+    \Large Question 3.5 Answer : \\[2pt]
+}
+\begin{displaymath}
+w_3(1) = \frac{1}{6\sqrt{5}}
+\end{displaymath}
+\begin{displaymath}
+w_3(2) = \frac{\sqrt{5}}{6}
+\end{displaymath}
+\begin{displaymath}
+w_3(3) =\frac{1}{6\sqrt{5}}
+\end{displaymath}
+\begin{displaymath}
+w_3(4) = \frac{1}{2\sqrt{5}}
+\end{displaymath}
+\begin{displaymath}
+Normalize\ them, then\ we\ can \ get\  w_3(1) =0.10,\ w_3(2)= 0.50,\ w_3(3) = 0.10,\ w_3(4) = 0.30
+\end{displaymath}
+
+\begin{displaymath}
+f_{3(-1, -0.5, 2)}=\left\{
+\begin{aligned}
+-1,\quad if \ x_2 > -0.5\\
++1, \quad otherwise.
+\end{aligned}
+\right.
+\end{displaymath}
+
+\begin{displaymath}
+\epsilon_3 = w_3(1) = 0.1
+\end{displaymath}
+
+\begin{displaymath}
+\beta_3 = \frac{1}{2}\mathrm{ln}9 = 1.10
+\end{displaymath}
+
+}
+
+
+%----------------------------------------------------------------------------------------
+%      Question 3.6
+%----------------------------------------------------------------------------------------
+\noindent{
+\textbf{
+    \Large Question 3.6 Answer : \\[2pt]
+}
+\begin{displaymath}
+F(\bm{x}) = \mathrm{sign}[0.55h_{(+1, -0.5, 1)}(\bm{x}) + 0.80h_{(-1, 0.5, 1)}(\bm{x}) + 1.10h_{(-1, -0.5, 2)}(\bm{x})]
+\end{displaymath}
+\begin{displaymath}
+F(\bm{x_1}) = \mathrm{sign}[0.55 + 0.80 - 1.10] = +1
+\end{displaymath}
+\begin{displaymath}
+F(\bm{x_2}) = \mathrm{sign}[-0.55 + 0.80 - 1.10] = -1
+\end{displaymath}
+\begin{displaymath}
+F(\bm{x_3}) = \mathrm{sign}[0.55 + 0.80 + 1.10] = +1
+\end{displaymath}
+\begin{displaymath}
+F(\bm{x_4}) = \mathrm{sign}[0.55 - 0.80 - 1.10] = -1
+\end{displaymath}
+All four labeled examples are correct.
+
+}
+
+
+
+\end{document}
+
+
