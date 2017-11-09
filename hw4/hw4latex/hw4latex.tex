@@ -1,0 +1,215 @@
+\documentclass[a4paper,10pt,tikz]{article}
+\usepackage{amsmath,bm,tikz,amsfonts,geometry}
+\geometry{a4paper,scale=0.8}
+
+\begin{document}
+\begin{center}
+    \Huge CSCI 567  Machine Learning \\[10pt]
+    \Large Homework \#4 \\[10pt]
+    \Large Name : Yi Zhao \\[35pt]
+\end{center}
+
+%----------------------------------------------------------------------------------------
+%      Question 1.1
+%----------------------------------------------------------------------------------------
+
+\noindent{
+\textbf{
+    \Large Question 1.1 Answer : \\[2pt]
+}
+}
+
+\indent{
+\begin{displaymath}
+\mathnormal{P}(x_1, x_2, ..., x_N)=\left\{
+\begin{aligned}
+\frac{1}{\theta^N}, \quad \forall x_1, x_2,..., x_N \in(0,\theta]\\
+0, \quad \exists x_1, x_2,..., x_N \notin(0,\theta].
+\end{aligned}
+\right.
+\end{displaymath}	
+\begin{displaymath}
+\theta^* = \max \{ x_1, x_2,..., x_N\}
+\end{displaymath}
+because \begin{math}\frac{\mathrm{d}\ \mathrm{ln} P (\theta | \bm{x})}{\mathrm{d} \theta} = -\frac{N}{\theta},\ P (\theta | \bm{x})\end{math} is a decreasing function, and the minimal number for \begin{math}\theta \  \mathrm{make} \ P(\theta | \bm{x}) \neq 0 \ \mathrm{is} \max \{ x_1, x_2,..., x_N\}\end{math}.\\[15pt]
+}
+
+%----------------------------------------------------------------------------------------
+%      Question 1.2
+%----------------------------------------------------------------------------------------
+
+\noindent{
+\textbf{
+    \Large Question 1.2 Answer : \\[2pt]
+}
+}
+
+\noindent{
+\begin{displaymath}
+P(k|x_n, \theta_1, \theta_2, \omega_1, \omega_2) = \frac{P(k)P(x_n|k)}{P(x_n,\theta_1, \theta_2, \omega_1, \omega_2)} = \frac{\omega_k U(X=x_n|\theta_k)}{\omega_1 U(X=x_n|\theta_1)+\omega_2 U(X=x_n|\theta_2)}
+\end{displaymath}
+\begin{displaymath}
+P(k|x_n, \theta_1, \theta_2, \omega_1, \omega_2) = \frac{\omega_k\frac{1}{\theta_k}\bm{1}[0<x_n\leq \theta_k]}{\omega_1\frac{1}{\theta_1}\bm{1}[0<x_n\leq \theta_1]+\omega_2\frac{1}{\theta_2}\bm{1}[0<x_n\leq \theta_2]}
+\end{displaymath}
+\begin{displaymath}
+Q_q(\bm{\theta}) = \sum_n\sum_{\bm{z}_n}q(\bm{z}_n)\mathrm{log}p(x_n,\bm{z}_n|\bm{\theta})
+\end{displaymath}
+\begin{displaymath}
+Q_q(\bm{\theta}) = \sum_{n=1}^N[P(1|x_n,\bm{\theta})\mathrm{log}p(x_n,\bm{z}_n = 1|\bm{\theta})+P(2|x_n,\bm{\theta})\mathrm{log}p(x_n,\bm{z}_n = 2|\bm{\theta})]
+\end{displaymath}
+\begin{displaymath}
+Q_q(\bm{\theta}) = \sum_{n=1}^N \frac{\omega_1 U(X=x_n|\theta_1)\mathrm{log}p(x_n,\bm{z}_n = 1|\bm{\theta})   +   \omega_2 U(X=x_n|\theta_2)\mathrm{log}p(x_n,\bm{z}_n = 2|\bm{\theta})}{\omega_1 U(X=x_n|\theta_1)+\omega_2 U(X=x_n|\theta_2)}
+\end{displaymath}
+\begin{displaymath}
+Q(\bm{\theta}, \bm{\theta}^{\mathrm{OLD}}) = \sum_{n=1}^N \frac{\omega_1^{\mathrm{OLD}} U(X=x_n|\theta_1^{\mathrm{OLD}})\mathrm{log}[\omega_1U(X=x_n|\theta_1)]   +   \omega_2^{\mathrm{OLD}} U(X=x_n|\theta_2^{\mathrm{OLD}})\mathrm{log}[\omega_2U(X=x_n|\theta_2)]}{\omega_1^{\mathrm{OLD}} U(X=x_n|\theta_1^{\mathrm{OLD}})+\omega_2^{\mathrm{OLD}} U(X=x_n|\theta_2^{\mathrm{OLD}})}
+\end{displaymath}
+In order to maximize \begin{math}Q(\bm{\theta}, \bm{\theta}^{\mathrm{OLD}})\end{math}, then we should maximize \begin{math}\sum\mathrm{log}[\omega_1U(X= x_n|\theta_1)]\end{math} and \begin{math}\sum\mathrm{log}[\omega_2U(X= x_n|\theta_2)]\end{math}. If \begin{math}\theta_1 < \mathrm{max}\{x_i\ |\ \forall \ x_i \leq \theta_1^{\mathrm{OLD}}\} \ \mathrm{or}\ \theta_2 < \max \{ x_1, x_2,..., x_N\}\end{math}, we can find that \begin{math}\exists i,\  \mathrm{makes}\ Q(\bm{\theta}, \bm{\theta}^{\mathrm{OLD}}) = -\infty\end{math}. For \begin{math}U(X= x_n|\theta_1)\ \mathrm{and}\  U(X= x_n|\theta_2)\end{math}, arccording to problem 1.1, we can get
+\begin{displaymath}
+\theta_1^* = \mathrm{max}\{x_i\ |\ \forall \ x_i \leq \theta_1^{\mathrm{OLD}}\}
+\end{displaymath}
+\begin{displaymath}
+\theta_2^* = \max \{ x_1, x_2,..., x_N\}
+\end{displaymath}
+}
+
+%----------------------------------------------------------------------------------------
+%      Question 2.1
+%----------------------------------------------------------------------------------------
+
+\noindent{
+\textbf{
+    \Large Question 2.1 Answer : \\[2pt]
+}
+}
+
+\indent{
+\begin{displaymath}
+\mathrm{Because}\ P(\bm{x}_a, \bm{x}_b) = \sum_{k=1}^K \pi_kP(\bm{x}_a, \bm{x}_b|k)
+\end{displaymath}
+\begin{displaymath}
+\frac{P(\bm{x}_a, \bm{x}_b)}{P(\bm{x}_a)} = \sum_{k=1}^K \pi_k\frac{P(\bm{x}_a, \bm{x}_b|k)}{P(\bm{x}_a)}
+\end{displaymath}
+\begin{displaymath}
+P(\bm{x}_b|\bm{x}_a) = \sum_{k=1}^K \pi_k P(\bm{x}_b|\bm{x}_a,k) \frac{P(\bm{x}_a, \bm{x}_b|k)}{P(\bm{x}_a)P(\bm{x}_b|\bm{x}_a,k)}
+\end{displaymath}
+\begin{displaymath}
+P(\bm{x}_b|\bm{x}_a) = \sum_{k=1}^K \pi_k P(\bm{x}_b|\bm{x}_a,k) \frac{P(\bm{x}_a|k)}{P(\bm{x}_a)}
+\end{displaymath}
+\begin{displaymath}
+P(\bm{x}_b|\bm{x}_a) = \sum_{k=1}^K (\pi_k\frac{P(\bm{x}_a|k)}{P(\bm{x}_a)}) P(\bm{x}_b|\bm{x}_a,k)
+\end{displaymath}
+\begin{displaymath}
+P(\bm{x}_b|\bm{x}_a) = \sum_{k=1}^K (\frac{\pi_kP(\bm{x}_a|k)}{ \sum_{k=1}^K \pi_kP(\bm{x}_a|k)}) P(\bm{x}_b|\bm{x}_a,k)
+\end{displaymath}
+\begin{displaymath}
+\mathrm{So},\ \lambda_k = \frac{\pi_kP(\bm{x}_a|k)}{ \sum_{k=1}^K \pi_kP(\bm{x}_a|k)}
+\end{displaymath}
+\begin{displaymath}
+\mathrm{So},\ \sum_{k=1}^K\lambda_k = \frac{\sum_{k=1}^K \pi_kP(\bm{x}_a|k)}{ \sum_{k=1}^K \pi_kP(\bm{x}_a|k)} = 1\\[20pt]
+\end{displaymath}
+}
+
+%----------------------------------------------------------------------------------------
+%      Question 3.1
+%----------------------------------------------------------------------------------------
+
+\noindent{
+\textbf{
+    \Large Question 3.1 Answer : \\[2pt]
+}
+}
+
+\indent{
+\begin{displaymath}
+\lim_{\sigma \to 0} \gamma(z_{nk}) = \lim_{\sigma \to 0} \frac{1}{1+\sum_{j \neq k} (\pi_j/\pi_k) \mathrm{exp} [(||\bm{x}_n-\bm{\mu}_k||^2-||\bm{x}_n-\bm{\mu}_j||^2)/2\sigma^2]}
+\end{displaymath}
+\begin{displaymath}
+\lim_{\sigma \to 0} \gamma(z_{nk}) = \frac{1}{1+\sum_{j \neq k} \lim_{\sigma \to 0} (\pi_j/\pi_k) \mathrm{exp} [(||\bm{x}_n-\bm{\mu}_k||^2-||\bm{x}_n-\bm{\mu}_j||^2)/2\sigma^2]}
+\end{displaymath}
+\begin{displaymath}
+\mathrm{If}\ k \neq \mathrm{argmin_{\mathnormal{k}^{'}}}||\bm{x}_n-\bm{\mu}_{k^{'}}||^2,\ \mathrm{then}\ \exists j \neq k \ \mathrm{makes} \ ||\bm{x}_n-\bm{\mu}_k||^2-||\bm{x}_n-\bm{\mu}_j||^2 > 0, 
+\end{displaymath}
+\begin{displaymath}
+\mathrm{then}\ \lim_{\sigma \to 0} \mathrm{exp} [(||\bm{x}_n-\bm{\mu}_k||^2-||\bm{x}_n-\bm{\mu}_j||^2)/2\sigma^2] = +\infty,\ \lim_{\sigma \to 0} \gamma(z_{nk}) = \lim_{\delta \to +\infty} \frac{1}{\mathrm{C}+\delta} = 0.
+\end{displaymath}
+\begin{displaymath}
+\mathrm{If}\ k = \mathrm{argmin_{\mathnormal{k}^{'}}}||\bm{x}_n-\bm{\mu}_{k^{'}}||^2,\ \mathrm{then}\ \forall j \neq k \ \mathrm{makes} \ ||\bm{x}_n-\bm{\mu}_k||^2-||\bm{x}_n-\bm{\mu}_j||^2 <0, 
+\end{displaymath}
+\begin{displaymath}
+\mathrm{then}\ \lim_{\sigma \to 0} \mathrm{exp} [(||\bm{x}_n-\bm{\mu}_k||^2-||\bm{x}_n-\bm{\mu}_j||^2)/2\sigma^2] = 0,\ \lim_{\sigma \to 0} \gamma(z_{nk}) = \lim_{\delta \to 0} \frac{1}{1+\delta} = 1.
+\end{displaymath}
+\begin{displaymath}
+\mathrm{So, we\ can \ verify}\ \lim_{\sigma \to 0} \gamma(z_{nk}) = r_{nk}
+\end{displaymath}
+\begin{displaymath}
+\lim_{\sigma \to 0} \sum_n^N\sum_k^K\gamma(z_{nk})\mathrm{log}p(\bm{x}_n, z_n = k) = \lim_{\sigma \to 0} \sum_n^N\sum_k^Kr_{nk}[\mathrm{log}\pi_k-\frac{||\bm{x}_n-\bm{\mu}_k||_2^2}{2\sigma^2}-\mathrm{log}\sqrt{2\pi}\sigma]
+\end{displaymath}
+\begin{displaymath}
+ = \lim_{\sigma \to 0} \sum_n^N\sum_k^Kr_{nk}(-\frac{||\bm{x}_n-\bm{\mu}_k||_2^2}{2\sigma^2}) = -\frac{1}{2\sigma^2}\lim_{\sigma \to 0} \sum_n^N\sum_k^Kr_{nk}||\bm{x}_n-\bm{\mu}_k||_2^2
+\end{displaymath}
+\begin{displaymath}
+\mathrm{So},  \sum_n^N\sum_k^K\gamma(z_{nk})\mathrm{log}p(\bm{x}_n, z_n = k) = -\frac{1}{2\sigma^2}J,\ \mathrm{as} \ \sigma \rightarrow 0.\\[20pt]
+\end{displaymath}
+}
+
+%----------------------------------------------------------------------------------------
+%      Question 4.1
+%----------------------------------------------------------------------------------------
+
+\noindent{
+\textbf{
+    \Large Question 4.1 Answer : \\[2pt]
+}
+}
+
+\indent{
+\begin{displaymath} 
+L =\mathrm{log}\prod_{n=1}^N \mathrm{P}(y_n) \mathrm{P}(x_n|y_n)= \mathrm{log}\prod_{n=1}^N [\mathrm{P}(y_n=c)\prod_{d=1}^D \mathrm{P}(X_{nd}=x_{nd}|y_n=c)]
+\end{displaymath}
+\begin{displaymath}
+L = \mathrm{log}\prod_{n=1}^N\mathrm{P}(y_n=c)\prod_{n=1}^N\prod_{d=1}^D\mathrm{P}(X_{nd}=x_{nd}|y_n=c)
+\end{displaymath}
+\begin{displaymath}
+L = \sum_{n=1}^N\mathrm{log}\pi_{y_{n}}+\sum_{n=1}^N\sum_{d=1}^D\mathrm{log}\mathrm{P}(X_{nd}=x_{nd}|y_n=c)
+\end{displaymath}
+\begin{displaymath}
+L = \sum_{n=1}^N\mathrm{log}\pi_{y_{n}}+\sum_{n=1}^N\sum_{d=1}^D(-\frac{(x_{nd}-\mu_{cd})^2}{2\sigma_{cd}^2}-\mathrm{log}\sqrt{2\pi}\sigma_{cd})
+\end{displaymath}
+\begin{displaymath}
+L = \sum_{n=1}^N\mathrm{log}\pi_{y_{n}}+\sum_c\sum_{n:y_n = c}\sum_{d=1}^D(-\frac{(x_{nd}-\mu_{cd})^2}{2\sigma_{cd}^2}-\mathrm{log}\sqrt{2\pi}\sigma_{cd})
+\end{displaymath}
+\begin{displaymath}
+L = \sum_c\mathrm{log}\pi_c \times(\mathrm{number\ of\ data\  points\  labeled\  as\ } c) + \sum_c\sum_{n:y_n = c}\sum_{d=1}^D(-\frac{(x_{nd}-\mu_{cd})^2}{2\sigma_{cd}^2}-\mathrm{log}\sqrt{2\pi\sigma_{cd}^2})
+\end{displaymath}
+}
+
+
+%----------------------------------------------------------------------------------------
+%      Question 4.2
+%----------------------------------------------------------------------------------------
+\noindent{
+\textbf{
+    \Large Question 4.2 Answer : \\[2pt]
+}
+}
+
+\indent{
+\begin{displaymath}
+\mathrm{Make}\quad  \#_c \mathrm{\ represents\ number\ of\ data\  points\  labeled\  as\ } c \mathrm{\ in\ the\ training\ points}
+\end{displaymath}
+\begin{displaymath}
+\pi_c^* = \frac{\#_c}{N} 
+\end{displaymath}
+\begin{displaymath}
+\frac{\partial L}{\partial \mu_{cd}} = 0, \mathrm{then} \ \mu_{cd}^* = \frac{\sum_{n:y_n = c}x_{nd}}{\#_c}
+\end{displaymath}
+\begin{displaymath}
+\frac{\partial L}{\partial \sigma_{cd}^2} = 0, \mathrm{then}\ \sigma_{cd}^{2*} = \frac{\sum_{n:y_n = c}(x_{nd}-\mu_{cd})^2}{\#_c}
+\end{displaymath}
+\begin{displaymath}
+\sigma_{cd}^{2*} = \frac{1}{\#_c}\sum_{n:y_n = c}x_{nd}^2 - \frac{1}{\#_c^2}\sum_{i:y_i = c}\sum_{j:y_j = c}x_{id}x_{jd}
+\end{displaymath}
+}
+
+
+\end{document}
