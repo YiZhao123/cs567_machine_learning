@@ -1,0 +1,134 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath,bm}
+
+\begin{document}
+\begin{center}
+    \Huge CSCI 567  Machine Learning \\[10pt]
+    \Large Homework \#2 \\[10pt]
+    \Large Name : Yi Zhao \\[35pt]
+\end{center}
+
+%----------------------------------------------------------------------------------------
+%      Question 1.1
+%----------------------------------------------------------------------------------------
+\noindent{
+\textbf{
+    \Large Question 1.1 Answer : \\
+}
+\begin{center}
+	\begin{displaymath}
+	\frac{\partial l} {\partial \bm{u}} = \frac{\partial l} {\partial \bm{a}}  \frac{\partial \bm{a}} {\partial \bm{h}} \frac{\partial \bm{h}} {\partial \bm{u}}
+	\end{displaymath}
+	\begin{displaymath}
+	\frac{\partial l} {\partial \bm{u}} = \bm{W}^{\left( 2 \right) \mathrm{T}} \cdot \frac{\partial l} {\partial \bm{a}}  \cdot * \mathnormal H (\bm{u})
+	\end{displaymath}\\[20pt]
+	
+	\begin{displaymath}
+	l = -\sum_{k} y_{k} \log \frac{e^{a_{k}}}{\sum_{k^{'}} e^{a_{k^{'}}}}
+	\end{displaymath}
+	\begin{displaymath}
+	so, l = -\sum_{k} y_{k} a_{k} + \log{\sum_{k^{'}} e^{a_{k^{'}}}}
+	\end{displaymath}
+	\begin{displaymath}
+	\frac{\partial l} {\partial \bm{a}} = \bm{z} -  \bm{y}
+	\end{displaymath}\\[20pt]
+	
+	\begin{displaymath}
+	\frac{\partial l} {\partial \bm{W}^{\left( 1 \right)}} = \frac{\partial l} {\partial \bm{u}} \cdot \bm{x}^{\mathrm{T}}
+	\end{displaymath}\\[20pt]
+	
+	\begin{displaymath}
+	\frac{\partial l} {\partial \bm{b}^{\left( 1 \right)}} = \frac{\partial l} {\partial \bm{u}} 
+	\end{displaymath}\\[20pt]
+	
+	\begin{displaymath}
+	\frac{\partial l} {\partial \bm{W}^{\left( 2 \right)}} = \frac{\partial l} {\partial \bm{a}} \cdot \bm{h}^{\mathrm{T}}
+	\end{displaymath}\\[20pt]
+\end{center}
+}
+
+%----------------------------------------------------------------------------------------
+%      Question 1.2
+%----------------------------------------------------------------------------------------
+\noindent{
+\textbf{
+    \Large Question 1.2 Answer : \\
+}
+
+Because the gradients of 
+\begin{math}\bm{W}^{\left( 1 \right)}, \bm{W}^{\left( 2 \right)}, \bm{b}^{\left( 1 \right)}\end{math} are all zero matrices or vectors, in every iterations, when update the parameters, there is no change for \begin{math}\bm{W}^{\left( 1 \right)}, \bm{W}^{\left( 2 \right)}, \bm{b}^{\left( 1 \right)}\end{math}.\\[20pt]
+
+}
+
+
+%----------------------------------------------------------------------------------------
+%      Question 1.3
+%----------------------------------------------------------------------------------------
+\noindent{
+\textbf{
+    \Large Question 1.3 Answer : \\
+}
+\begin{center}
+	\begin{displaymath}
+	\bm{a} = \bm{W}^{\left( 2 \right)}[\bm{W}^{\left( 1 \right)}\bm{x} + \bm{b}^{\left( 1 \right)}] + \bm{b}^{\left( 2 \right)}
+	\end{displaymath}
+	\begin{displaymath}
+	\bm{a} = \bm{W}^{\left( 2 \right)}\bm{W}^{\left( 1 \right)}\bm{x} +  \bm{W}^{\left( 2 \right)}\bm{b}^{\left( 1 \right)}+\bm{b}^{\left( 2 \right)}
+	\end{displaymath}
+	\begin{displaymath}
+	So,  \bm{U} = \bm{W}^{\left( 2 \right)}\bm{W}^{\left( 1 \right)}
+	\end{displaymath}
+	\begin{displaymath}
+	 \bm{v} = \bm{W}^{\left( 2 \right)}\bm{b}^{\left( 1 \right)}+\bm{b}^{\left( 2 \right)}
+	\end{displaymath}\\[20pt]
+\end{center}
+}
+
+
+%----------------------------------------------------------------------------------------
+%      Question 2.1
+%----------------------------------------------------------------------------------------
+\noindent{
+\textbf{
+    \Large Question 2.1 Answer : \\
+}
+\begin{center}
+	\begin{displaymath}
+	\bm{J}(\bm{w}) = \sum_{n} l(\bm{w}^{\mathrm{T}} \bm{\phi(x_{n})}, y_{n}) + \frac{\lambda}{2}||\bm{w}||_{2}^{2}
+	\end{displaymath}
+	\begin{displaymath}
+	\frac{\partial \bm{J}(\bm{w})}{\partial \bm{w}} =  \sum_{n} \frac{\partial l(\bm{w}^{\mathrm{T}} \bm{\phi(x_{n})}, y_{n})}{\partial (\bm{w}^{\mathrm{T}} \bm{\phi(x_{n})})} \bm{\phi(x_{n})} + \lambda\bm{w}
+	\end{displaymath} 
+	\begin{displaymath}
+	if, \   \frac{\partial \bm{J}(\bm{w})}{\partial \bm{w}} = 0
+	\end{displaymath} 
+	\begin{displaymath}
+	\bm{w}^{*} = - \frac{1}{\lambda}\sum_{n}\frac{\partial l(s_{n}, y_{n})}{\partial s_{n}}\bm{\phi(x_{n})},\  where \  s_{n} = \bm{w}^{\mathrm{T}} \bm{\phi(x_{n})}
+	\end{displaymath} 	
+	
+\end{center}
+}
+
+\indent{
+so, the optimal solution of w can be represented as a linear combination of \begin{math} \bm{\phi(x)} \end{math}.\\[20pt]
+}
+
+%----------------------------------------------------------------------------------------
+%      Question 2.2
+%----------------------------------------------------------------------------------------
+\noindent{
+\textbf{
+    \Large Question 2.2 Answer : \\
+}
+\begin{center}
+	\begin{displaymath}
+	\min \limits_{w}\  \sum_{j = 1} ^{N} l(\sum_{i= 1} ^{N} \alpha_i K_{ij}, y_{j}) + \frac{\lambda}{2} \sum_{i = 1} ^{N} \sum_{j = 1} ^{N} \alpha_i K_{ij}\alpha_j
+	\end{displaymath} 	
+	
+\end{center}
+}
+
+
+
+
+\end{document}
