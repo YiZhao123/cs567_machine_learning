@@ -1,0 +1,137 @@
+\documentclass[a4paper,10pt,tikz]{article}
+\usepackage{amsmath,bm,tikz,amsfonts,geometry}
+\geometry{a4paper,scale=0.8}
+
+\begin{document}
+\begin{center}
+    \Huge CSCI 567  Machine Learning \\[10pt]
+    \Large Homework \#5 \\[10pt]
+    \Large Name : Yi Zhao \\[35pt]
+\end{center}
+
+%----------------------------------------------------------------------------------------
+%      Question 1.1
+%----------------------------------------------------------------------------------------
+
+\noindent{
+\textbf{
+    \Large Question 1.1 Answer : \\[2pt]
+}
+}
+\indent{
+\begin{displaymath}
+\mathrm{Define}\ \  \alpha_t(j) = P(Z_{t} = s_{j}, x_{1:t})\ \ \mathrm{then},\  
+\end{displaymath}
+\begin{displaymath}
+\alpha_1(s_1) = P(Z_{1} = s_{1})\times b_{1A} = 0.28
+\end{displaymath}
+\begin{displaymath}
+\alpha_1(s_2) = P(Z_{1} = s_{2})\times b_{2A} = 0.06
+\end{displaymath}
+\begin{displaymath}
+\alpha_2(s_1) = (a_{11}\times \alpha_1(s_1) + a_{21}\times \alpha_1(s_2)) \times b_{1G} = 0.0992
+\end{displaymath}
+\begin{displaymath}
+\alpha_2(s_2) = (a_{12}\times \alpha_1(s_1) + a_{22}\times \alpha_1(s_2)) \times b_{2G} = 0.0184
+\end{displaymath}
+\begin{displaymath}
+\alpha_3(s_1) = (a_{11}\times \alpha_2(s_1) + a_{21}\times \alpha_2(s_2)) \times b_{1C} = 0.008672
+\end{displaymath}
+\begin{displaymath}
+\alpha_3(s_2) = (a_{12}\times \alpha_2(s_1) + a_{22}\times \alpha_2(s_2)) \times b_{2C} = 0.009264
+\end{displaymath}
+\begin{displaymath}
+\alpha_4(s_1) = (a_{11}\times \alpha_3(s_1) + a_{21}\times \alpha_3(s_2)) \times b_{1G} = 0.00425728
+\end{displaymath}
+\begin{displaymath}
+\alpha_4(s_2) = (a_{12}\times \alpha_3(s_1) + a_{22}\times \alpha_3(s_2)) \times b_{2G} = 0.00145856
+\end{displaymath}
+\begin{displaymath}
+\alpha_5(s_1) = (a_{11}\times \alpha_4(s_1) + a_{21}\times \alpha_4(s_2)) \times b_{1T} = 0.0003989248
+\end{displaymath}
+\begin{displaymath}
+\alpha_5(s_2) = (a_{12}\times \alpha_4(s_1) + a_{22}\times \alpha_4(s_2)) \times b_{2T} = 0.0005179776
+\end{displaymath}
+\begin{displaymath}
+\alpha_6(s_1) = (a_{11}\times \alpha_5(s_1) + a_{21}\times \alpha_5(s_2)) \times b_{1A} = 0.000210532352
+\end{displaymath}
+\begin{displaymath}
+\alpha_6(s_2) = (a_{12}\times \alpha_5(s_1) + a_{22}\times \alpha_5(s_2)) \times b_{2A} = 0.000078114304
+\end{displaymath}
+\begin{displaymath}
+P(\bm{X}_{1:6} = \bm{\mathrm{O}}_{1:6};\bm{\mathrm{\varTheta}}) = \alpha_6(s_1) + \alpha_6(s_2) = 0.000288646656
+\end{displaymath}
+}
+
+\noindent{
+\textbf{
+    \Large Question 1.2 Answer : \\[2pt]
+}
+}
+\indent{
+\begin{displaymath}
+\delta_{1}(s_1) = b_{1A}P(Z_{1} = s_{1}) =0.28 ,\ \delta_{1}(s_2) = b_{2A}P(Z_{1} = s_{2}) = 0.06
+\end{displaymath}
+\begin{displaymath}
+\delta_{2}(s_1) = \max\{b_{1G}a_{11}\delta_{1}(s_1), b_{1G}a_{21}\delta_{1}(s_2)\} = \max\{0.0896, 0.0096\} = 0.0896
+\end{displaymath}
+\begin{displaymath}
+\delta_{2}(s_2) = \max\{b_{2G}a_{12}\delta_{1}(s_1), b_{2G}a_{22}\delta_{1}(s_2)\} = \max\{0.0112, 0.0072\} = 0.0112
+\end{displaymath}
+\begin{displaymath}
+\delta_{3}(s_1) = \max\{b_{1C}a_{11}\delta_{2}(s_1), b_{1C}a_{21}\delta_{2}(s_2)\} = \max\{0.007168, 0.000448\} = 0.007168
+\end{displaymath}
+\begin{displaymath}
+\delta_{3}(s_2) = \max\{b_{2C}a_{12}\delta_{2}(s_1), b_{2C}a_{22}\delta_{2}(s_2)\} = \max\{0.005376, 0.002016\} = 0.005376
+\end{displaymath}
+\begin{displaymath}
+\delta_{4}(s_1) = \max\{b_{1G}a_{11}\delta_{3}(s_1), b_{1G}a_{21}\delta_{3}(s_2)\} = \max\{0.00229376, 0.00086016\} = 0.00229376
+\end{displaymath}
+\begin{displaymath}
+\delta_{4}(s_2) = \max\{b_{2G}a_{12}\delta_{3}(s_1), b_{2G}a_{22}\delta_{3}(s_2)\} = \max\{0.00028672, 0.00064512\} = 0.00064512
+\end{displaymath}
+\begin{displaymath}
+\delta_{5}(s_1) = \max\{b_{1T}a_{11}\delta_{4}(s_1), b_{1T}a_{21}\delta_{4}(s_2)\} = \max\{0.0001835, 0.0000258048\} = 0.0001835
+\end{displaymath}
+\begin{displaymath}
+\delta_{5}(s_2) = \max\{b_{2T}a_{12}\delta_{4}(s_1), b_{2T}a_{22}\delta_{4}(s_2)\} = \max\{0.0001376256, 0.0001161216\} = 0.0001376256
+\end{displaymath}
+\begin{displaymath}
+\delta_{6}(s_1) = \max\{b_{1A}a_{11}\delta_{5}(s_1), b_{1A}a_{21}\delta_{5}(s_2)\} = \max\{5.8720256E-5, 2.2020096eE-5\} = 5.8720256E-5
+\end{displaymath}
+\begin{displaymath}
+\delta_{6}(s_2) = \max\{b_{2A}a_{12}\delta_{5}(s_1), b_{2A}a_{22}\delta_{5}(s_2)\} = \max\{7.340032E-6, 1.6515072E-5\} = 1.6515072E-5
+\end{displaymath}
+\begin{displaymath}
+z_{6}^{*} = s1,\ z_{5}^{*} = s1,\ z_{4}^{*} = s1,\ z_{3}^{*} = s1,\ z_{2}^{*} = s1,\ z_{1}^{*} = s1
+\end{displaymath}
+}
+
+\noindent{
+\textbf{
+    \Large Question 1.3 Answer : \\[2pt]
+}
+}
+
+\indent{
+\begin{displaymath}
+x^{*} = \mathrm{argmax}_{x} P(X_{7} = x|\bm{X}_{1:6} = \bm{\mathrm{O}}_{1:6};\bm{\mathrm{\varTheta}}) = \mathrm{argmax}_{x} P(X_{7} = x, \bm{X}_{1:6} = \bm{\mathrm{O}}_{1:6};\bm{\mathrm{\varTheta}})
+\end{displaymath}
+\begin{displaymath}
+P(X_{7} = x, \bm{X}_{1:6} = \bm{\mathrm{O}}_{1:6};\bm{\mathrm{\varTheta}}) = \alpha_7(s_1) + \alpha_7(s_2)
+\end{displaymath}
+\begin{displaymath}
+= (a_{11}\times \alpha_6(s_1) + a_{21}\times \alpha_6(s_2)) \times b_{1x} + (a_{12}\times \alpha_6(s_1) + a_{22}\times \alpha_6(s_2)) \times b_{2x} 
+\end{displaymath}
+\begin{displaymath}
+= (0.8\times0.000058720256 + 0.4\times0.000016515072)\times b_{1x} + (0.2\times0.000058720256 + 0.6\times0.000016515072)\times b_{2x}
+\end{displaymath}
+\begin{displaymath}
+\mathrm{because,} (0.8\times0.000058720256 + 0.4\times0.000016515072) > (0.2\times0.000058720256 + 0.6\times0.000016515072), so, \  b_{1x} > b_{2x}
+\end{displaymath}
+\begin{displaymath}
+\mathrm{obviously}, x^{*} = A\ or \ G
+\end{displaymath}
+}
+
+\end{document}
